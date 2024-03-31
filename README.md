@@ -74,3 +74,54 @@ Citations:
 [6] https://supabase.com/docs/guides/api/quickstart
 [7] https://supabase.com/docs/guides/getting-started
 [8] https://supabase.com/docs/guides/storage/quickstart
+
+
+通过Python SDK向Supabase数据库提交数据涉及几个步骤，包括安装SDK、初始化Supabase客户端、以及使用客户端进行数据操作。以下是详细的步骤：
+
+## 安装Supabase Python SDK
+
+首先，你需要在你的Python环境中安装Supabase的Python SDK。可以通过pip命令来安装：
+
+```bash
+pip install supabase
+```
+
+## 初始化Supabase客户端
+
+安装完SDK后，你需要使用你的Supabase项目的URL和公钥来初始化Supabase客户端。这些信息可以在你的Supabase项目的设置中找到。
+
+```python
+from supabase import create_client, Client
+
+url: str = "你的Supabase项目URL"
+key: str = "你的Supabase匿名公钥"
+supabase: Client = create_client(url, key)
+```
+
+## 提交数据
+
+初始化客户端后，你可以使用`supabase.table()`方法来指定要操作的表，然后使用`.insert()`方法来插入数据。例如，如果你有一个名为`todos`的表，并且想要添加一个新的待办事项，你可以这样做：
+
+```python
+data = {"task": "完成Supabase项目", "done": False}
+inserted_data = supabase.table("todos").insert(data).execute()
+```
+
+`.insert()`方法接受一个字典或字典列表作为参数，表示要插入的数据。`.execute()`方法会执行插入操作，并返回操作的结果。
+
+## 错误处理
+
+在实际应用中，你可能还需要处理可能发生的错误，例如网络问题或数据验证失败。可以通过检查`.execute()`方法返回的结果来实现：
+
+```python
+data = {"task": "完成Supabase项目", "done": False}
+inserted_data, error = supabase.table("todos").insert(data).execute()
+
+if error:
+    print(f"发生错误：{error.message}")
+else:
+    print("数据插入成功")
+```
+
+通过上述步骤，你可以通过Python SDK向Supabase数据库提交数据。记得替换示例中的URL和公钥为你自己的项目信息。此外，根据你的具体需求，你可能还需要使用其他方法来更新、查询或删除数据。
+
