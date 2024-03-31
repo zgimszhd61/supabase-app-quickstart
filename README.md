@@ -125,3 +125,44 @@ else:
 
 通过上述步骤，你可以通过Python SDK向Supabase数据库提交数据。记得替换示例中的URL和公钥为你自己的项目信息。此外，根据你的具体需求，你可能还需要使用其他方法来更新、查询或删除数据。
 
+
+Supabase 是一个开源的后端即服务平台，它提供了类似于 Google Firebase 的功能，但是建立在 PostgreSQL 数据库之上。Retool 是一个快速构建内部工具的平台，它允许开发者通过拖放组件和编写 SQL 或 JavaScript 查询来创建用户界面和后端逻辑。要在 Retool 中快速开始调用 Supabase 数据库，你可以遵循以下步骤：
+
+### 设置 Supabase 后端
+
+1. 在 Supabase 创建一个新项目，设置密码并选择一个服务层级。记得将密码保存在安全的地方，因为稍后你需要它来连接到 Retool。
+2. 在项目准备好之后，创建一个新表格，在“表格编辑器”部分。可以通过导入 CSV 文件来添加你的数据。
+3. 确保数据已正确导入并保存。现在你的数据已经准备好了。
+
+### 连接 Supabase 作为 Retool 资源
+
+1. 在 Retool 环境中，点击“创建新应用”。
+2. 在右侧面板中，你会看到组件面板，这里可以拖放预制的组件，并使用“检查”标签来连接数据和更改设计设置、数据验证等。
+3. 在左侧列中，你可以探索应用中的组件、查询、转换器和常量。底部面板是你找到查询和资源的地方，也是你将连接 Supabase 资源的地方。
+4. 点击“+ 新建”按钮，在资源下拉菜单中选择“创建新资源”。选择“Postgres”作为资源类型，因为 Supabase 是建立在 PostgreSQL 之上的。
+5. 填写资源连接表单，包括“主机”和“数据库密码”等信息，这些信息在创建项目时设置，并可以在 Supabase 的设置中找到。
+6. 添加这些信息后，点击“测试连接”。如果连接成功，你会看到一个成功消息；如果不成功，API 应该会返回确切的错误帮助你排除故障。
+7. 连接成功后，保存更改并关闭资源模态框。
+
+### 使用 SQL 查询数据
+
+1. 在底部查询面板中，你现在可以编写标准的 SQL 查询来操作你的数据。
+2. 例如，可以使用如下 SQL 查询来获取所有数据：`SELECT * FROM your_table_name`。
+3. 执行查询并保存。
+
+### 设置 CRUD 界面
+
+1. 在 Retool 中，你可以使用表格来显示数据，并在右侧面板中使用标签页来在创建和更新表单之间切换。
+2. 通过这种方式，你可以创建、读取、更新和删除条目。
+
+以上步骤是一个简化的快速开始指南，具体的操作可能会根据你的具体需求和 Supabase 以及 Retool 的更新而有所不同。更详细的指南和教程可以在 Retool 的官方文档中找到[1][2][3]。
+
+Citations:
+[1] https://retool.com/blog/supabase-tutorial-admin-panel
+[2] https://docs.retool.com/tutorials/data-sources/supabase
+[3] https://blog.boldtech.dev/build-an-app-on-supabase/
+[4] https://www.youtube.com/watch?v=AgB2-CSrnoI
+[5] https://docs.retool.com/data-sources/quickstarts/retool-database
+[6] https://supabase.com/docs/guides/getting-started
+[7] https://community.retool.com/t/dealing-with-local-data/26914
+[8] https://www.youtube.com/watch?v=ROBkblVAJu0
